@@ -1,4 +1,5 @@
 from string import ascii_lowercase
+import pandas as pd
 
 ENGLISH_FREQ = {'e': 12.02, 't': 9.10, 'a': 8.12, 'o': 7.68, 'i': 7.31, 'n': 6.95,
                 's': 6.28, 'r': 6.02, 'h': 5.92, 'd': 4.32, 'l': 3.98, 'u': 2.88,
@@ -6,14 +7,28 @@ ENGLISH_FREQ = {'e': 12.02, 't': 9.10, 'a': 8.12, 'o': 7.68, 'i': 7.31, 'n': 6.9
                 'p': 1.82, 'b': 1.49, 'v': 1.11, 'k': 0.69, 'x': 0.17, 'q': 0.11,
                 'j': 0.10, 'z': 0.07}
 
+
 def freq_count(ct):
-    freq = {l : 0 for l in ascii_lowercase}
+    freq = {l: 0 for l in ascii_lowercase}
     ct = ct.lower()
     for l in ct:
         if l in freq:
             freq[l] += 1
-    freq = sorted(freq.items(), key = lambda x: x[1], reverse = True)
-    return freq
+    freq = sorted(freq.items(), key=lambda x: x[0])
+    df = pd.DataFrame(freq, columns=['Character', 'Frequency'])
+    return df
+
+# # without zero frequency letters
+# def freq_count(ct):
+#     freq = {l: 0 for l in ascii_lowercase}
+#     ct = ct.lower()
+#     for l in ct:
+#         if l in freq:
+#             freq[l] += 1
+#     freq = {k: v for k, v in freq.items() if v != 0}
+#     freq = sorted(freq.items(), key=lambda x: x[0])
+#     df = pd.DataFrame(freq, columns=['Character', 'Frequency'])
+#     return df
 
 
 def calculate_likelihood(plaintext):
@@ -55,9 +70,9 @@ def decryptCeaser(ct, shift):
     return message, like
 
 
-# if __name__ == "__main__":
-#     message = "Hello World"
-#     print(message)
-#     ct = encryptCeaser(message, 16)
-#     print(ct)
-#     print(decryptCeaser(ct, 16))
+if __name__ == "__main__":
+    message = "Hello World"
+    print(message)
+    # ct = encryptCeaser(message, 16)
+    # print(ct)
+    print(freq_count(message))
