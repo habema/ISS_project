@@ -78,7 +78,7 @@ def render_home_page():
 def render_caesar_cipher_page():    
     st.title("Caesar Cipher")
     message = st.text_input("Enter your message")
-    shift = st.number_input("Enter your shift Value", min_value = 0, step = 1)
+    shift = st.number_input("Enter your shift value", min_value = 0, step = 1)
     shift %= 26
     if st.button("Encrypt"):
         encrypted_message = encryptCeaser(message, shift)
