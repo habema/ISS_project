@@ -49,7 +49,11 @@ def input_to_bytes(text, input_format):
 def display(encrypted_text, display_format):
     try:
         if display_format == "Text":
-            encrypted_text = encrypted_text.decode()
+            try:
+                encrypted_text = encrypted_text.decode()
+            except UnicodeDecodeError:
+                st.error('Ciphertext is not printable as text, use hex or bits.')
+                return
         elif display_format == "Hex":
             encrypted_text = encrypted_text.hex()
         elif display_format == "Bits":
