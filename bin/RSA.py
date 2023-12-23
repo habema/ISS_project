@@ -28,7 +28,7 @@ def decRSA(ct, kpub, kpriv):
     d, _ = kpriv
     m = pow(ct, d, n)
     print(m)
-    return int.to_bytes(m, (m.bit_length() + 7) // 8  , "big")
+    return int.to_bytes(m, (m.bit_length() + 7) // 8  , "big").decode('utf-8')
 
 
 def attack(kpub, ct):
