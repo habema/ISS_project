@@ -51,12 +51,12 @@ def attack(kpub, ct):
     kpriv = (d, n)
     return decRSA(ct, kpub, kpriv), factors
 
-if __name__ == "__main__":
-    message = "balls"
-    e = 17
-    p = 833849682377741
-    q = 11
-    kpub, kpriv = keypairGen(p, q, e)
-    ct = encRSA(message, kpub)
-    print(decRSA(ct, kpub, kpriv))
-    print(attack(kpub, ct))
+# if __name__ == "__main__":
+#     message = "Hello World"
+#     e = 17
+#     p = 833849682377741
+#     q = 11
+#     kpub, kpriv = keypairGen(p, q, e)
+#     ct = encRSA(message, kpub)
+#     print(decRSA(ct, kpub, kpriv))
+#     print(attack(kpub, ct))

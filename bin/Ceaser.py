@@ -55,9 +55,9 @@ def decryptCeaser(ct, shift):
     return message, like
 
 
-if __name__ == "__main__":
-    message = "Hello World"
-    print(message)
-    ct = encrypt(message, 16)
-    print(ct)
-    print(decrypt(ct, 16))
+# if __name__ == "__main__":
+#     message = "Hello World"
+#     print(message)
+#     ct = encryptCeaser(message, 16)
+#     print(ct)
+#     print(decryptCeaser(ct, 16))
