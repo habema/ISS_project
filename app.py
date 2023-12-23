@@ -77,15 +77,23 @@ def render_home_page():
 
 def render_caesar_cipher_page():    
     st.title("Caesar Cipher")
-    message = st.text_input("Enter your message")
+    message = st.text_input("Enter your message/cipher")
     shift = st.number_input("Enter your shift value", min_value = 0, step = 1)
     shift %= 26
-    if st.button("Encrypt"):
+
+    _, col2, _, col4, _ = st.columns([1, 1, 1, 1, 1])
+    with col2:
+        enc_button = st.button("Encrypt")
+
+    with col4:
+        dec_button = st.button("Decrypt")
+
+    if enc_button:
         encrypted_message = encryptCeaser(message, shift)
         st.success(f"Encrypted Message: {encrypted_message}")
-    ct = st.text_input("Enter your cipher")
-    if st.button("Decrypt"):
-        decrypted_message = decryptCeaser(ct, shift)
+    
+    if dec_button:
+        decrypted_message = decryptCeaser(message, shift)
         st.success(f"Decrypted Message: {decrypted_message}")
 
 def render_rsa_page():
