@@ -1,7 +1,7 @@
 import streamlit as st
-from Ceaser import *
-from RSA import *
-from S_DES import *
+from bin.Ceaser import *
+from bin.RSA import *
+from bin.S_DES import *
 
 
 def input_num(text):
