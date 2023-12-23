@@ -79,22 +79,31 @@ def render_caesar_cipher_page():
     st.title("Caesar Cipher")
     message = st.text_input("Enter your message/cipher")
     shift = st.number_input("Enter your shift value", min_value = 0, step = 1)
-    shift %= 26
 
-    _, col2, _, col4, _ = st.columns([1, 1, 1, 1, 1])
+    col1, col2, col3, col4, col5 = st.columns([1, 2, 2, 2, 1])
     with col2:
         enc_button = st.button("Encrypt")
 
-    with col4:
+    with col3:
         dec_button = st.button("Decrypt")
 
+    with col4:
+        freq_button = st.button("Calculate Frequency")
+
     if enc_button:
+        shift = shift % 26
         encrypted_message = encryptCeaser(message, shift)
         st.success(f"Encrypted Message: {encrypted_message}")
     
     if dec_button:
+        shift = shift % 26
         decrypted_message = decryptCeaser(message, shift)
         st.success(f"Decrypted Message: {decrypted_message}")
+
+    if freq_button:
+        freq = freq_count(message)
+        # st.success(f"Frequency: {freq}")
+        st.bar_chart(freq, x="Character", y="Frequency")
 
 def render_rsa_page():
     st.title("RSA Encryption/Decryption")
